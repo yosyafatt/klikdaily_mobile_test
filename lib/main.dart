@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/profile/profile_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/shopcart/shopcart_screen.dart';
 import './utils/theme_data.dart';
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: buildKlikDailyTheme(context),
-      home: ShopCartScreen(),
+      home: ProfileScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
