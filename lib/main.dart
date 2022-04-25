@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:klikdaily_mobile_test/utils/size_config.dart';
-import './home_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/shopcart/shopcart_screen.dart';
 import './utils/theme_data.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: buildKlikDailyTheme(context),
-      home: HomeScreen(),
+      home: ShopCartScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

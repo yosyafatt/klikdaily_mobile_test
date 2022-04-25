@@ -29,7 +29,6 @@ ThemeData buildKlikDailyTheme(BuildContext context) {
     primaryTextTheme: GoogleFonts.workSansTextTheme(base.textTheme),
     primaryIconTheme: _klikDailyIconTheme(base.primaryIconTheme),
     chipTheme: _klikDailyChipTheme(base.chipTheme),
-    brightness: Brightness.light,
   );
 }
 

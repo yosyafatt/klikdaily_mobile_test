@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:klikdaily_mobile_test/utils/size_config.dart';
-import './app_header_widget.dart';
-import './app_search_field_widget.dart';
-import './app_filter_list_widget.dart';
-import 'app_item_list_widget.dart';
-import './utils/size_config.dart';
+import 'components/home_header_widget.dart';
+import 'components/home_search_field_widget.dart';
+import 'components/home_filter_list_widget.dart';
+import 'components/home_item_list_widget.dart';
+import '../../utils/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,8 +16,8 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppHeader(),
-              AppSearchField(),
+              HomeHeader(),
+              HomeSearchField(),
               Padding(
                 padding: EdgeInsets.only(left: vW(32.0), top: vH(24.0)),
                 child: Text(
@@ -28,8 +28,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              AppFilterList(),
-              AppItemList()
+              HomeFilterList(),
+              HomeItemList()
             ],
           ),
         ),

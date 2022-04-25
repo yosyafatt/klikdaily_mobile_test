@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import './utils/app_colors.dart';
-import './utils/size_config.dart';
+import '../../../utils/app_colors.dart';
+import '../../../utils/size_config.dart';
 
-class AppHeader extends StatelessWidget {
-  const AppHeader({
+class HomeHeader extends StatelessWidget {
+  const HomeHeader({
     Key key,
   }) : super(key: key);
 

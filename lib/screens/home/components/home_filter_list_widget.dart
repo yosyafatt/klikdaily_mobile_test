@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import './utils/size_config.dart';
+import '../../../utils/size_config.dart';
 
-class AppFilterList extends StatefulWidget {
+class HomeFilterList extends StatefulWidget {
   @override
-  _AppFilterListState createState() => _AppFilterListState();
+  _HomeFilterListState createState() => _HomeFilterListState();
 }
 
-class _AppFilterListState extends State<AppFilterList> {
+class _HomeFilterListState extends State<HomeFilterList> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {

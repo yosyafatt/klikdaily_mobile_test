@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './utils/app_colors.dart';
-import './utils/size_config.dart';
+import '../../../utils/app_colors.dart';
+import '../../../utils/size_config.dart';
 
-class AppSearchField extends StatelessWidget {
-  const AppSearchField({
+class HomeSearchField extends StatelessWidget {
+  const HomeSearchField({
     Key key,
   }) : super(key: key);
 

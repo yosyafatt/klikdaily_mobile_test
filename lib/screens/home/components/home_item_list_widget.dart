@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import './utils/app_colors.dart';
-import './utils/size_config.dart';
+import '../../../utils/app_colors.dart';
+import '../../../utils/size_config.dart';
+import '../../components/app_item_name.dart';
 
-class AppItemList extends StatelessWidget {
-  const AppItemList({
+class HomeItemList extends StatelessWidget {
+  const HomeItemList({
     Key key,
   }) : super(key: key);
 
@@ -44,9 +45,15 @@ class AppItemList extends StatelessWidget {
                   children: [
                     AppItemName(
                       name: 'Sweet Lemon Singapore',
+                      fontColor: Colors.grey.shade800,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
                     ),
                     AppItemPrice(
                       price: '12.000',
+                      fontColor: AppColors.sonicSilver,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
                     ),
                     AppItemRating(rating: 3)
                   ],
@@ -60,69 +67,6 @@ class AppItemList extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class AppItemName extends StatelessWidget {
-  const AppItemName({
-    Key key,
-    @required this.name,
-  }) : super(key: key);
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      name,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: vH(16.0),
-        color: Colors.grey.shade800,
-      ),
-    );
-  }
-}
-
-class AppItemPrice extends StatelessWidget {
-  const AppItemPrice({
-    Key key,
-    @required this.price,
-  }) : super(key: key);
-
-  final String price;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '$price / kg',
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: vH(30.0),
-        color: AppColors.sonicSilver,
-      ),
-    );
-  }
-}
-
-class AppItemRating extends StatelessWidget {
-  const AppItemRating({
-    Key key,
-    @required this.rating,
-  }) : super(key: key);
-  final int rating;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        for (var i = 1; i <= 5; i++)
-          Icon(
-            Icons.star_rounded,
-            size: vH(24.0),
-            color: i <= rating ? AppColors.chineseYellow : AppColors.argent,
-          )
-      ],
     );
   }
 }
