@@ -38,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(vH(36.0)),
                     child: Image.network(
                       'https://randomuser.me/api/portraits/women/50.jpg',
-                      height: vH(180.0),
+                      height: vH(120.0),
                       fit: BoxFit.cover,
                     ),
                   ),

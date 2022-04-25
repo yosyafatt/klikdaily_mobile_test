@@ -20,13 +20,13 @@ class AppProfileInfo extends StatelessWidget {
             padding: EdgeInsets.all(vH(18.0)),
             child: Icon(
               icon,
-              size: vH(36.0),
+              size: vH(24.0),
             ),
           ),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(fontSize: vH(20.0)),
+              style: TextStyle(fontSize: vH(18.0)),
             ),
           )
         ],

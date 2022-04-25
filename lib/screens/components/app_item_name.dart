@@ -69,7 +69,7 @@ class AppItemRating extends StatelessWidget {
         for (var i = 1; i <= 5; i++)
           Icon(
             Icons.star_rounded,
-            size: vH(24.0),
+            size: vH(18.0),
             color: i <= rating ? AppColors.chineseYellow : AppColors.argent,
           )
       ],

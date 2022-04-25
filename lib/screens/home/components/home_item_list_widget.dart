@@ -46,13 +46,13 @@ class HomeItemList extends StatelessWidget {
                     AppItemName(
                       name: 'Sweet Lemon Singapore',
                       fontColor: Colors.grey.shade800,
-                      fontSize: 16.0,
+                      fontSize: 14.0,
                       fontWeight: FontWeight.bold,
                     ),
                     AppItemPrice(
                       price: '12.000',
                       fontColor: AppColors.sonicSilver,
-                      fontSize: 30.0,
+                      fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                     AppItemRating(rating: 3)
