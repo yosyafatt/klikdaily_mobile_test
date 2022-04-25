@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import './../../../cubits/cart/cart_cubit.dart';
+import './../../../models/product.dart';
 import './../../../utils/app_colors.dart';
 import './../../../utils/size_config.dart';
 import './../../components/app_item_name.dart';
 
 class ShopCartListItem extends StatelessWidget {
-  const ShopCartListItem({
+  const ShopCartListItem(
+    this.product, {
     Key key,
   }) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +31,16 @@ class ShopCartListItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                AppItemName(
-                  name: 'Sweet Orange China',
-                  fontColor: Colors.grey.shade800,
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+                Expanded(
+                  child: AppItemName(
+                    name: product.title,
+                    fontColor: Colors.grey.shade800,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                Spacer(),
-                AppRemoveListItem(),
+                SizedBox(width: vW(24.0)),
+                AppRemoveListItem(product.id),
               ],
             ),
             SizedBox(height: vH(8.0)),
@@ -48,7 +57,7 @@ class ShopCartListItem extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Image.network(
-                      'https://picsum.photos/200',
+                      product.image,
                     ),
                   ),
                 ),
@@ -58,16 +67,17 @@ class ShopCartListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppItemPrice(
-                        price: '12.000',
+                        price: NumberFormat.simpleCurrency(locale: 'en')
+                            .format(product.price),
                         fontColor: AppColors.sonicSilver,
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,
                       ),
-                      AppItemRating(rating: 4),
+                      AppItemRating(rating: product.rating.rate.round()),
                     ],
                   ),
                 ),
-                AppAddSubsItemButton()
+                AppAddSubsItemButton(product)
               ],
             ),
           ],
@@ -76,12 +86,16 @@ class ShopCartListItem extends StatelessWidget {
 }
 
 class AppAddSubsItemButton extends StatelessWidget {
-  const AppAddSubsItemButton({
+  const AppAddSubsItemButton(
+    this.product, {
     Key key,
   }) : super(key: key);
 
+  final Product product;
+
   @override
   Widget build(BuildContext context) {
+    final cartCubit = context.watch<CartCubit>();
     return Container(
       child: Row(
         children: [
@@ -91,6 +105,7 @@ class AppAddSubsItemButton extends StatelessWidget {
               icon: Icon(Icons.remove_rounded),
               onPressed: () {
                 print('decrement -> cart');
+                context.read<CartCubit>().removeOneFromCart(product);
               },
               iconSize: 20.0,
               color: AppColors.antiflashWhite,
@@ -103,7 +118,8 @@ class AppAddSubsItemButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: vW(12.0),
             ),
-            child: Text('12'),
+            child: Text(
+                '${cartCubit.cart.cartItems.where((element) => element.id == product.id).length}'),
           ),
           Container(
             color: AppColors.seaGreen,
@@ -111,6 +127,7 @@ class AppAddSubsItemButton extends StatelessWidget {
               icon: Icon(Icons.add_rounded),
               onPressed: () {
                 print('increment -> cart');
+                context.read<CartCubit>().addToCart(product);
               },
               iconSize: 20.0,
               color: AppColors.antiflashWhite,
@@ -126,15 +143,18 @@ class AppAddSubsItemButton extends StatelessWidget {
 }
 
 class AppRemoveListItem extends StatelessWidget {
-  const AppRemoveListItem({
+  const AppRemoveListItem(
+    this.id, {
     Key key,
   }) : super(key: key);
+
+  final int id;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        print('remove cart item');
+        context.read<CartCubit>().removeFromCart(id);
       },
       icon: Icon(Icons.close_rounded),
       color: Colors.red.shade800,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/size_config.dart';
 import 'components/shopcart_list_item.dart';
+import './../../cubits/cart/cart_cubit.dart';
 
 class ShopCartScreen extends StatelessWidget {
   @override
@@ -18,12 +20,37 @@ class ShopCartScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding:
-            EdgeInsets.symmetric(horizontal: vW(32.0)).copyWith(top: vH(32.0)),
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return ShopCartListItem();
+      body: BlocBuilder<CartCubit, CartState>(
+        builder: (context, state) {
+          if (state is CartLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is CartError) {
+            return Center(
+              child: Text('Ouch! : ${state.error}'),
+            );
+          }
+          if (state is CartLoaded) {
+            final cart = state.cart;
+            var set = <String>{};
+
+            final cartItems = cart.cartItems
+                .where((item) => set.add(item.id.toString()))
+                .toList();
+            return ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: vW(32.0))
+                  .copyWith(top: vH(32.0)),
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final product = cartItems[index];
+                return ShopCartListItem(product);
+              },
+            );
+          }
+
+          return Container();
         },
       ),
       floatingActionButton: Container(

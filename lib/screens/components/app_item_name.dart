@@ -24,6 +24,8 @@ class AppItemName extends StatelessWidget {
         fontSize: vH(fontSize),
         color: fontColor,
       ),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
@@ -45,7 +47,7 @@ class AppItemPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '$price / kg',
+      '$price',
       style: TextStyle(
         fontWeight: fontWeight,
         fontSize: vH(fontSize),
